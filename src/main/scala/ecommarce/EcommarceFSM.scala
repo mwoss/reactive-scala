@@ -1,30 +1,28 @@
 package ecommarce
 
-import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import ecommarce.fsm_actors.FSMCart
-import ecommarce.fsm_actors.FSMCart.{AddItem, CheckoutStarted, StartCheckout}
-import ecommarce.fsm_actors.FSMCheckout.{PaymentReceived, SelectedDeliveryMethod, SelectedPaymentMethod}
+import akka.actor.{ActorRef, ActorSystem, Props}
+import ecommarce.fsm_actors.FSMOrderManager
+import akka.pattern.ask
+import akka.util.Timeout
+import ecommarce.messages._
+import ecommarce.utils.{StringDelivery, StringItem, StringPayment}
 
-object EcommarceFSM extends App{
+import scala.concurrent.Await
+import scala.concurrent.duration._
+
+object EcommarceFSM extends App {
+  implicit val timeout: Timeout = 30 seconds
+
   val system = ActorSystem("Ecommerce")
-  system.actorOf(Props[MainActorFSM], "cartActor")
-}
+  val orderActor: ActorRef = system.actorOf(Props[FSMOrderManager], "managerActor")
 
-class MainActorFSM extends Actor {
-  val cart: ActorRef = context.actorOf(Props[FSMCart], "cart")
+  Await.result(orderActor ? StartShopping, timeout.duration)
 
-  cart ! AddItem("socks")
+  Await.result(orderActor ? AddItem(StringItem("notebook")), timeout.duration)
+  Await.result(orderActor ? Buy, timeout.duration)
 
-  Thread.sleep(12* 1000)
+  Await.result(orderActor ? SelectDeliveryMethod(StringDelivery("fedex")), timeout.duration)
+  Await.result(orderActor ? SelectPaymentMethod(StringPayment("blik")), timeout.duration)
 
-  cart ! AddItem("tshirt")
-  cart ! AddItem("jeans")
-  cart ! StartCheckout
-
-  override def receive: Receive = {
-    case CheckoutStarted(checkout) =>
-      checkout ! SelectedDeliveryMethod("post")
-      checkout ! SelectedPaymentMethod("online bank transfer")
-      checkout ! PaymentReceived
-  }
+  Await.result(orderActor ? Pay, timeout.duration)
 }

@@ -2,7 +2,7 @@ package ecommarce.actors
 
 import akka.actor.{Actor, ActorRef, Timers}
 import akka.event.{Logging, LoggingReceive}
-import ecommarce.fsm_actors.FSMCart.{CheckoutCanceled, CheckoutClosed}
+import ecommarce.actors.Cart.{CheckoutCanceled, CheckoutClosed}
 
 import scala.concurrent.duration._
 import ecommarce.actors.Checkout._
