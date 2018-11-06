@@ -1,8 +1,8 @@
 import akka.actor.{ActorSystem, Props}
 import akka.testkit.{ImplicitSender, TestKit, TestProbe}
-import ecommarce.fsm_actors.FSMCheckout
-import ecommarce.messages._
-import ecommarce.utils.{StringDelivery, StringPayment}
+import ecommarce.pure_fsm.fsm_actors.FSMCheckout
+import ecommarce.pure_fsm.messages._
+import ecommarce.pure_fsm.utils.{StringDelivery, StringPayment}
 import org.scalatest.{BeforeAndAfterAll, WordSpecLike}
 
 class CheckoutTest extends TestKit(ActorSystem())

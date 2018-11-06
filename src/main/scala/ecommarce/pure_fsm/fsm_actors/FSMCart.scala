@@ -1,11 +1,11 @@
-package ecommarce.fsm_actors
+package ecommarce.pure_fsm.fsm_actors
 
 import akka.actor.{FSM, Props}
 import FSMCart._
 import akka.event.Logging
-import ecommarce.fsm_actors.FSMOrderManager.{Empty => _, InCheckout => _, OrderManagerData => _, OrderManagerState => _, _}
-import ecommarce.messages._
-import ecommarce.utils.StringItem
+import ecommarce.pure_fsm.fsm_actors.FSMOrderManager.{Empty => _, InCheckout => _, OrderManagerData => _, OrderManagerState => _, _}
+import ecommarce.pure_fsm.messages._
+import ecommarce.pure_fsm.utils.StringItem
 
 import scala.concurrent.duration._
 

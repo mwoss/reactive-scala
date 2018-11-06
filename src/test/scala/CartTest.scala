@@ -1,9 +1,9 @@
 import akka.actor.ActorSystem
 import akka.testkit.{TestFSMRef, TestKit}
-import ecommarce.fsm_actors.FSMCart
-import ecommarce.fsm_actors.FSMCart._
-import ecommarce.messages.{AddItem, RemoveItem, StartCheckout}
-import ecommarce.utils.StringItem
+import ecommarce.pure_fsm.fsm_actors.FSMCart
+import ecommarce.pure_fsm.fsm_actors.FSMCart._
+import ecommarce.pure_fsm.messages.{AddItem, RemoveItem, StartCheckout}
+import ecommarce.pure_fsm.utils.StringItem
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 

@@ -1,9 +1,9 @@
-package ecommarce
+package ecommarce.pure_fsm
 
 import akka.actor.{Actor, ActorRef, ActorSystem, Props}
-import ecommarce.actors.Cart
-import ecommarce.actors.Cart.{AddItem, CheckState, CheckoutStarted, StartCheckout}
-import ecommarce.actors.Checkout.{PaymentReceived, SelectedDeliveryMethod, SelectedPaymentMethod}
+import ecommarce.pure_fsm.normal_actors.Cart
+import ecommarce.pure_fsm.normal_actors.Cart._
+import ecommarce.pure_fsm.normal_actors.Checkout._
 
 object Ecommerce extends App{
   val system = ActorSystem("Ecommerce")

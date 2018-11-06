@@ -1,7 +1,7 @@
-package ecommarce.messages
+package ecommarce.pure_fsm.messages
 
 import akka.actor.ActorRef
-import ecommarce.utils.{StringDelivery, StringItem, StringPayment}
+import ecommarce.pure_fsm.utils.{StringDelivery, StringItem, StringPayment}
 
 // Order Manager messages
 trait OrderManagerCommand

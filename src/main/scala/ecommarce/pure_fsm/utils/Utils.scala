@@ -1,4 +1,4 @@
-package ecommarce.utils
+package ecommarce.pure_fsm.utils
 
 case class StringDelivery(delivery: String) extends AnyVal
 case class StringPayment(payment: String) extends AnyVal

@@ -1,11 +1,11 @@
-package ecommarce
+package ecommarce.pure_fsm
 
 import akka.actor.{ActorRef, ActorSystem, Props}
-import ecommarce.fsm_actors.FSMOrderManager
 import akka.pattern.ask
 import akka.util.Timeout
-import ecommarce.messages._
-import ecommarce.utils.{StringDelivery, StringItem, StringPayment}
+import ecommarce.pure_fsm.fsm_actors.FSMOrderManager
+import ecommarce.pure_fsm.messages._
+import ecommarce.pure_fsm.utils.{StringDelivery, StringItem, StringPayment}
 
 import scala.concurrent.Await
 import scala.concurrent.duration._

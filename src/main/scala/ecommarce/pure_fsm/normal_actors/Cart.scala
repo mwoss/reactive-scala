@@ -1,10 +1,10 @@
-package ecommarce.actors
+package ecommarce.pure_fsm.normal_actors
 
 import akka.actor.{Actor, ActorRef, Props, Timers}
 import akka.event.{Logging, LoggingReceive}
+import Cart._
 
 import scala.concurrent.duration._
-import Cart._
 
 class Cart extends Actor with Timers {
   val log = Logging(context.system, this)

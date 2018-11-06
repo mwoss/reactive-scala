@@ -1,9 +1,9 @@
-package ecommarce.fsm_actors
+package ecommarce.pure_fsm.fsm_actors
 
 import akka.actor.{ActorRef, FSM, Props}
 import FSMOrderManager._
 import akka.event.Logging
-import ecommarce.messages._
+import ecommarce.pure_fsm.messages._
 
 class FSMOrderManager extends FSM[OrderManagerState, OrderManagerData] {
   val logger = Logging(context.system, this)

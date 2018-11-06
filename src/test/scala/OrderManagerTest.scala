@@ -3,10 +3,10 @@ import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.testkit.{TestFSMRef, TestKit}
 import akka.util.Timeout
-import ecommarce.fsm_actors.FSMOrderManager
-import ecommarce.fsm_actors.FSMOrderManager._
-import ecommarce.messages._
-import ecommarce.utils.{StringDelivery, StringItem, StringPayment}
+import ecommarce.pure_fsm.fsm_actors.FSMOrderManager
+import ecommarce.pure_fsm.fsm_actors.FSMOrderManager._
+import ecommarce.pure_fsm.messages._
+import ecommarce.pure_fsm.utils.{StringDelivery, StringItem, StringPayment}
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 

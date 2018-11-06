@@ -1,10 +1,10 @@
-package ecommarce.fsm_actors
+package ecommarce.pure_fsm.fsm_actors
 
 import akka.actor.{FSM, Props}
 import FSMCheckout._
 import akka.event.Logging
-import ecommarce.messages._
-import ecommarce.utils.{StringDelivery, StringPayment}
+import ecommarce.pure_fsm.messages._
+import ecommarce.pure_fsm.utils.{StringDelivery, StringPayment}
 
 import scala.concurrent.duration._
 

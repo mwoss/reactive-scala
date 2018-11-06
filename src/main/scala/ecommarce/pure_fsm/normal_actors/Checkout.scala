@@ -1,11 +1,10 @@
-package ecommarce.actors
+package ecommarce.pure_fsm.normal_actors
 
 import akka.actor.{Actor, ActorRef, Timers}
 import akka.event.{Logging, LoggingReceive}
-import ecommarce.actors.Cart.{CheckoutCanceled, CheckoutClosed}
 
 import scala.concurrent.duration._
-import ecommarce.actors.Checkout._
+import Checkout._
 
 class Checkout(checkoutCart: ActorRef) extends Actor with Timers {
   val log = Logging(context.system, self)
@@ -85,4 +84,6 @@ object Checkout {
 
   case object CheckoutTimerExpired extends Event
   case object PaymentTimerExpired extends Event
+  case object CheckoutCanceled extends Event
+  case object CheckoutClosed extends Event
 }
