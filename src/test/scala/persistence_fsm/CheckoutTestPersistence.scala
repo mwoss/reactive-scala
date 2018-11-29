@@ -1,11 +1,13 @@
+package persistence_fsm
+
 import akka.actor.{ActorSystem, Props}
 import akka.testkit.{ImplicitSender, TestKit, TestProbe}
 import ecommarce.persistence_fsm.fsm_actors.FSMCheckout
 import ecommarce.persistence_fsm.messages._
-import ecommarce.persistence_fsm.utils.{StringDelivery, StringPayment}
+import ecommarce.persistence_fsm.utils.{PayPal, StringDelivery}
 import org.scalatest.{BeforeAndAfterAll, WordSpecLike}
 
-class CheckoutTest extends TestKit(ActorSystem())
+class CheckoutTestPersistence extends TestKit(ActorSystem())
   with WordSpecLike
   with BeforeAndAfterAll
   with ImplicitSender {
@@ -23,7 +25,7 @@ class CheckoutTest extends TestKit(ActorSystem())
       checkoutChild ! SelectDeliveryMethod(StringDelivery("dhl"))
       expectMsg(DeliveryMethodSelected)
 
-      checkoutChild ! SelectPaymentMethod(StringPayment("paypal"))
+      checkoutChild ! SelectPaymentMethod(PayPal)
       expectMsgType[PaymentServiceStarted]
 
       checkoutChild ! PaymentReceived
@@ -53,3 +55,4 @@ class CheckoutTest extends TestKit(ActorSystem())
     }
   }
 }
+

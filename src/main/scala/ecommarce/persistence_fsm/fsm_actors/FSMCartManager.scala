@@ -1,5 +1,7 @@
 package ecommarce.persistence_fsm.fsm_actors
 
+import java.net.URI
+
 import akka.persistence.fsm.PersistentFSM
 import akka.persistence.fsm.PersistentFSM.FSMState
 import FSMCartManager._
@@ -102,7 +104,7 @@ object FSMCartManager {
 
   sealed trait CartDomainEvent
   case class AddItemDomainEvent(item: Item) extends CartDomainEvent
-  case class RemoveItemDomainEvent(item: String, quantity: Int) extends CartDomainEvent
+  case class RemoveItemDomainEvent(item: URI, quantity: Int) extends CartDomainEvent
   case object StartCartTimerDomainEvent extends CartDomainEvent
   case object CancelCartTimerDomainEvent extends CartDomainEvent
   case object ResetCartDomainEvent extends CartDomainEvent

@@ -6,7 +6,7 @@ import akka.event.Logging
 import akka.persistence.fsm.PersistentFSM
 import akka.persistence.fsm.PersistentFSM.FSMState
 import ecommarce.persistence_fsm.messages._
-import ecommarce.persistence_fsm.utils.{StringDelivery, StringPayment}
+import ecommarce.persistence_fsm.utils.{PaymentMethodType, StringDelivery, StringPayment}
 
 import scala.concurrent.duration._
 import scala.reflect._
@@ -35,7 +35,7 @@ class FSMCheckout(checkoutID: String) extends PersistentFSM[State, CheckoutData,
     case Event(SelectPaymentMethod(method), _) =>
       logger.info("Payment method chosen: " +  method)
       val paymentActor = context.actorOf(Props[FSMPayment], "payment")
-      paymentActor ! StartPayment
+      paymentActor ! StartPayment(method)
       goto(PaymentProcess) applying SelectPaymentMethodDomainEvent(method) replying PaymentServiceStarted(paymentActor)
   }
   when(PaymentProcess){
@@ -100,11 +100,11 @@ object FSMCheckout {
 
   sealed trait Data
   case class CheckoutData(delivery: Option[StringDelivery] = None,
-                          payment: Option[StringPayment] = None) extends Data
+                          payment: Option[PaymentMethodType] = None) extends Data
 
   sealed trait CheckoutDomainEvent
   case object StartCheckoutDomainEvent extends CheckoutDomainEvent
   case class SelectDeliveryMethodDomainEvent(method: StringDelivery) extends CheckoutDomainEvent
-  case class SelectPaymentMethodDomainEvent(method: StringPayment) extends CheckoutDomainEvent
+  case class SelectPaymentMethodDomainEvent(method: PaymentMethodType) extends CheckoutDomainEvent
   case object FinishCheckoutDomainEvent extends CheckoutDomainEvent
 }
